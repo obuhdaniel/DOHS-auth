@@ -10,3 +10,5 @@ It has been built from the
 
 ## Installation & updates
 
+using Docker
+
