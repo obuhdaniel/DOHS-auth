@@ -1,6 +1,6 @@
 // frontend/script.js
 
-document.addEventListener('DOMContentLoaded', () => {
+
     const loginForm = document.getElementById('loginForm');
     const errorText = document.getElementById('errorText');
 
@@ -35,7 +35,6 @@ document.addEventListener('DOMContentLoaded', () => {
             errorText.innerText = 'Failed to login. Please try again.';
         }
     });
-});
 
 // dashboard protection
 

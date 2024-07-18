@@ -3,14 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Protected Dashboard</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>DOHS Epidemic Spread Dashboard</title>
+    <link rel="stylesheet" href="dashboard.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
 </head>
 <body>
     <div class="container">
-        <h1>Protected Dashboard</h1>
-        <div id="dashboardMessage"></div>
+        <header>
+            <h1>Digital One Health Surveillance System</h1>
+            <h2>Epidemic Spread in Nigeria</h2>
+        </header>
+        <main>
+            <section class="chart-container">
+                <canvas id="diseaseChart"></canvas>
+            </section>
+            <section class="map-container">
+                <div id="map"></div>
+            </section>
+        </main>
     </div>
-    <script src="script.js"></script>
+    <script src="dash.js"></script>
 </body>
 </html>
