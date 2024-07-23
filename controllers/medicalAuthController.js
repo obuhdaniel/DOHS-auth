@@ -4,27 +4,25 @@ const { User } = require('../models');
 
 require('dotenv').config();
 
-const register = async (req, res) => {
-
-    console.log("you are about to register");
-    const {firstname, lastname, email, role, password, location } = req.body;
+const medicalRegister = async (req, res) => {
+    const {firstname, lastname, email, role, licenseNumber, password, location } = req.body;
 
     try {
         const hashedPassword = await bcrypt.hash(password, 10);
-        const user = await User.create({ firstname, lastname, email, role, password: hashedPassword, location });
+        const user = await User.create({ firstname, lastname, email, role, licenseNumber, password: hashedPassword, location });
         res.status(201).json(user);
     } catch (error) {
         res.status(500).json({ error: 'Failed to register user' });
     }
 };
 
-const login = async (req, res) => {
-    const { email, password } = req.body;
+const medicalLogin = async (req, res) => {
+    const { licenseNumber, password } = req.body;
 
     try {
         console.log(`Login attempt for email: ${email}`);
 
-        const user = await User.findOne({ where: { email } });
+        const user = await User.findOne({ where: { licenseNumber } });
 
         if (!user) {
             console.log('User not found');
@@ -38,7 +36,7 @@ const login = async (req, res) => {
             return res.status(401).json({ error: 'Invalid email or password' });
         }
 
-        const token = jwt.sign({ id: user.id, email: user.email, firstname:user.firstname, lastname:user.lastname, location:user.location,  role: user.role }, process.env.JWT_SECRET, { expiresIn: '1h' });
+        const token = jwt.sign({ id: user.id, licenseNumber:user.licenseNumber, firstname:user.firstname, lastname:user.lastname, location:user.location,  role: user.role }, process.env.JWT_SECRET, { expiresIn: '1h' });
         res.json({ token });
         if(!token){
             console.log('no token');
@@ -53,4 +51,4 @@ const login = async (req, res) => {
 
 
 
-module.exports = { register, login };
+module.exports = { medicalLogin, medicalRegister };

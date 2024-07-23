@@ -5,7 +5,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const authRoutes = require('./routes/auth');
-const dashboardRoutes = require('./routes/dashboard');
+// const dashboardRoutes = require('./routes/dashboard');
 const { initDB } = require('./models');
 
 const app = express();
@@ -15,8 +15,8 @@ const port = process.env.PORT || 3000;
 app.use(cors());
 
 app.use(bodyParser.json());
-app.use('/auth', authRoutes);
-app.use('/dashboard', dashboardRoutes); // Include dashboard routes
+app.use('/api/auth', authRoutes);
+// app.use('/dashboard', dashboardRoutes); // Include dashboard routes
 
 initDB();
 
